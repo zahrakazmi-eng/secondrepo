@@ -15,7 +15,7 @@
         // Components can be used INSIDE other components — this is called "composition"
         // This Button component is small, but it keeps button styling/logic in one place
         // "variant" defaults to "secondary" if not provided — this is called a default parameter
-        function Button({ label, variant = "secondary" }) {
+        function Button({ label, variant = "secondary"}) {
             return (
                 // Template literal (``) lets us build a className string with the variant value
                 <button className={`download-button ${variant}`}>{label}</button>
@@ -74,6 +74,19 @@
                 buttonText: 'Get Pro',
                 buttonVariant: 'primary',
             };
+            const premiumPlan = {
+                title: 'Premium',
+                price: '$30/mo.',
+                includesText: 'Everything in Pro, plus:',
+                features: [
+                    'Unlimited Agent requests',
+                    'Unlimited Tab completions',
+                    'Background Agents',
+                    'Maximum context windows',
+                ],
+                buttonText: 'Get Premium',
+                buttonVariant: 'tertiary',
+            };
 
             return (
                 // <> is a React Fragment - it groups elements without adding extra HTML divs
@@ -84,6 +97,7 @@
                         {/* This is the same as writing: title="Hobby" price="Free" includesText="Includes:" etc. */}
                         <PricingCard {...hobbyPlan} />
                         <PricingCard {...proPlan} />
+                        <PricingCard {...premiumPlan} />
                     </div>
                 </>
             );
