@@ -1,23 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- ==========================================================
+         PAGE SETUP
+         Invisible settings: text encoding, mobile sizing, tab title
+         ========================================================== -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pricing Plans — HTML version</title>
+
+    <!-- FONTS: Loads "Inter" from Google Fonts (weights 400–700).
+         The two "preconnect" lines just make the font load faster. -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- STYLES: All colors, spacing and type live in styles.css -->
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <!-- PAGE LABEL: Small floating tag pinned to the top of the screen -->
     <p class="page-label"><strong>HTML version</strong> — static markup</p>
+
+    <!-- ==========================================================
+         PRICING CARDS
+         Row of cards side by side. Each card follows the same layout:
+           1. Title       → plan name
+           2. Price       → amount + billing period
+           3. Features    → "Includes" line + checklist
+           4. Button      → call to action, pinned to the bottom
+         ========================================================== -->
     <div class="cards-container">
+
+        <!-- ---------- CARD 1: HOBBY (free plan) ---------- -->
         <div class="card">
             <div class="card-top">
                 <h3 class="card-title">Hobby</h3>
+
+                <!-- Price: no period shown since it's free -->
                 <p class="card-price">
                     <span class="card-price-amount">Free</span>
                 </p>
+
+                <!-- Features checklist -->
                 <div class="card-content">
                     <p class="includes-text">Includes:</p>
                     <ul class="features-list">
@@ -36,15 +61,23 @@
                     </ul>
                 </div>
             </div>
+
+            <!-- Button: "secondary" = light grey style -->
             <button class="download-button secondary">Download</button>
         </div>
+
+        <!-- ---------- CARD 2: PRO (paid plan) ---------- -->
         <div class="card">
             <div class="card-top">
                 <h3 class="card-title">Pro</h3>
+
+                <!-- Price: large amount + smaller "/mo." -->
                 <p class="card-price">
                     <span class="card-price-amount">$20</span>
                     <span class="card-price-period">/mo.</span>
                 </p>
+
+                <!-- Features checklist -->
                 <div class="card-content">
                     <p class="includes-text">Everything in Hobby, plus:</p>
                     <ul class="features-list">
@@ -67,8 +100,51 @@
                     </ul>
                 </div>
             </div>
+
+            <!-- Button: "primary" = solid black, the main action -->
             <button class="download-button primary">Get Pro</button>
         </div>
+
+        <!-- ---------- CARD 3: PRO (duplicate of Card 2) ---------- -->
+        <!-- Placeholder copy — swap in the next tier's content -->
+        <div class="card">
+            <div class="card-top">
+                <h3 class="card-title">Pro</h3>
+
+                <!-- Price: large amount + smaller "/mo." -->
+                <p class="card-price">
+                    <span class="card-price-amount">$20</span>
+                    <span class="card-price-period">/mo.</span>
+                </p>
+
+                <!-- Features checklist -->
+                <div class="card-content">
+                    <p class="includes-text">Everything in Hobby, plus:</p>
+                    <ul class="features-list">
+                        <li>
+                            <span class="checkmark">✓</span>
+                            Extended limits on Agent
+                        </li>
+                        <li>
+                            <span class="checkmark">✓</span>
+                            Unlimited Tab completions
+                        </li>
+                        <li>
+                            <span class="checkmark">✓</span>
+                            Background Agents
+                        </li>
+                        <li>
+                            <span class="checkmark">✓</span>
+                            Maximum context windows
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Button: "primary" = solid black, the main action -->
+            <button class="download-button primary">Get Pro</button>
+        </div>
+
     </div>
 </body>
 </html>

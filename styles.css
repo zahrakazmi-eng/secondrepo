@@ -1,28 +1,61 @@
+/* ==========================================================
+   DESIGN TOKENS (quick reference)
+   ----------------------------------------------------------
+   Font            Inter
+   Page bg         #f7f7f4   warm off-white
+   Card bg         #f2f1ed   slightly darker warm grey
+   Text            #26251e   near-black
+   Muted text      rgba(38, 37, 30, 0.5)   text at 50% opacity
+   Button grey     #e6e5e0   → hover #D8D6CE
+   Button black    #111      → hover #333
+   ========================================================== */
+
+
+/* ==========================================================
+   1. RESET
+   Removes browser default spacing so sizes match the design.
+   "border-box" = padding is included inside the set width.
+   ========================================================== */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+
+/* ==========================================================
+   2. PAGE
+   Sets the font and centers everything on screen.
+   ========================================================== */
 body {
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     background-color: #f7f7f4;
     display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
+    justify-content: center;   /* center horizontally */
+    align-items: center;       /* center vertically */
+    min-height: 100vh;         /* fill full screen height */
     padding: 20px;
 }
 
+
+/* ==========================================================
+   3. CARDS ROW
+   Lays cards out in a single row (like auto layout → horizontal).
+   ========================================================== */
 .cards-container {
     display: flex;
     flex-direction: row;
-    gap: 24px;
-    flex-wrap: nowrap;
+    gap: 24px;                 /* space between cards */
+    flex-wrap: nowrap;         /* never wrap to a new line */
     justify-content: center;
-    align-items: flex-start;
+    align-items: flex-start;   /* align cards to the top */
 }
 
+
+/* ==========================================================
+   4. CARD
+   Single pricing card (auto layout → vertical, fixed width).
+   ========================================================== */
 .card {
     display: flex;
     flex-direction: column;
@@ -31,14 +64,21 @@ body {
     border-radius: 4px;
     padding: 16px;
     width: 320px;
-    flex-shrink: 0;
+    flex-shrink: 0;            /* keep 320px, don't squish */
 }
 
+/* Top section: title, price, features (stacked vertically) */
 .card-top {
     display: flex;
     flex-direction: column;
 }
 
+
+/* ==========================================================
+   5. CARD TEXT — Title & Price
+   ========================================================== */
+
+/* Plan name, e.g. "Hobby", "Pro" */
 .card-title {
     font-size: 22px;
     line-height: 28px;
@@ -47,6 +87,7 @@ body {
     margin-bottom: 8px;
 }
 
+/* Price row: keeps amount and period on one baseline */
 .card-price {
     font-size: 20px;
     color: rgba(38, 37, 30, 0.5);
@@ -54,61 +95,84 @@ body {
     align-items: baseline;
 }
 
+/* Price amount, e.g. "$20" or "Free" */
 .card-price-amount {
     font-size: 22px;
     font-weight: 400;
     color: rgba(38, 37, 30, 0.5);
 }
 
+/* Billing period, e.g. "/mo." */
 .card-price-period {
     font-size: 14px;
     color: rgba(38, 37, 30, 0.5);
 }
 
+
+/* ==========================================================
+   6. FEATURES LIST
+   ========================================================== */
+
+/* Wrapper — adds space above the button */
 .card-content {
     margin-bottom: 32px;
 }
 
+/* "Includes:" / "Everything in Hobby, plus:" */
 .includes-text {
     font-size: 16px;
     color: rgba(38, 37, 30, 0.5);
-    margin: 16px 0px;
+    margin: 16px 0px;          /* 16px top & bottom */
 }
 
+/* Checklist — removes default bullet points */
 .features-list {
     list-style: none;
     padding: 0;
 }
 
+/* Each feature row: checkmark + text side by side */
 .features-list li {
     display: flex;
     align-items: center;
-    margin-bottom: 8px;
+    margin-bottom: 8px;        /* space between rows */
     font-size: 16px;
     color: #26251e;
 }
 
+/* The ✓ icon */
 .checkmark {
     color: #26251e;
     font-size: 14px;
-    margin-right: 10px;
+    margin-right: 10px;        /* gap between icon and text */
     font-weight: 400;
 }
 
+
+/* ==========================================================
+   7. BUTTONS
+   Base pill style + variants. Add a variant class in the HTML:
+     primary   → solid black (main action)
+     secondary → light grey (uses the base style below)
+     tertiary  → olive grey (not used yet)
+   ========================================================== */
+
+/* Base button (light grey pill) */
 .download-button {
-    margin-top: auto;
-    width: fit-content;
+    margin-top: auto;          /* pushes button to card bottom */
+    width: fit-content;        /* width hugs the text */
     background-color: #e6e5e0;
     border: none;
-    border-radius: 999px;
+    border-radius: 999px;      /* fully rounded pill */
     padding: 14px 24px;
     font-size: 16px;
     font-weight: 500;
     color: #333;
-    cursor: pointer;
-    transition: background-color 0.2s ease;
+    cursor: pointer;           /* hand cursor on hover */
+    transition: background-color 0.2s ease;  /* smooth color fade */
 }
 
+/* Base: hover & pressed states */
 .download-button:hover {
     background-color: #D8D6CE;
 }
@@ -117,11 +181,28 @@ body {
     background-color: #D8D6CE;
 }
 
+/* Primary: solid black */
 .download-button.primary {
     background-color: #111;
     color: #fff;
 }
 
+/* Tertiary: olive grey */
+.download-button.tertiary {
+    background-color: #84816f;
+    color: #333;
+}
+
+/* Tertiary: hover & pressed states */
+.download-button.tertiary:hover {
+    background-color: #D8D6CE;
+}
+
+.download-button.tertiary:active {
+    background-color: #D8D6CE;
+}
+
+/* Primary: hover & pressed states (lightens to dark grey) */
 .download-button.primary:hover {
     background-color: #333;
 }
@@ -130,19 +211,25 @@ body {
     background-color: #333;
 }
 
+
+/* ==========================================================
+   8. PAGE LABEL
+   Small white tag floating at the top center of the screen.
+   ========================================================== */
 .page-label {
-    position: fixed;
+    position: fixed;           /* stays put when scrolling */
     top: 16px;
-    left: 50%;
+    left: 50%;                 /* these two lines center it */
     transform: translateX(-50%);
     font-size: 14px;
     color: #666;
     background: #fff;
     padding: 8px 16px;
     border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);  /* soft drop shadow */
 }
 
+/* Bold part of the label, e.g. "HTML version" */
 .page-label strong {
     color: #333;
 }
