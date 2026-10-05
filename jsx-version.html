@@ -24,25 +24,31 @@
 
         // Same card UI, written as a JSX component (HTML-like syntax inside JavaScript)
         // This component is reusable - we can create multiple cards by passing different data
-        function PricingCard({ title, price, includesText, features, buttonText, buttonVariant }) {
+        function PricingCard({ title, price, pricePeriod, includesText, features, buttonText, buttonVariant }) {
             return (
                 // JSX uses "className" instead of "class" because "class" is a reserved word in JavaScript
                 <div className="card">
-                    {/* Curly braces { } let you insert JavaScript expressions into JSX */}
-                    <h1 className="card-title">{title}</h1>
-                    <p className="card-price">{price}</p>
-                    <div className="card-content">
-                        <p className="includes-text">{includesText}</p>
-                        <ul className="features-list">
-                            {/* .map() loops through the features array and creates a <li> for each item */}
-                            {features.map((feature, i) => (
-                                // "key" helps React track which items changed - using index (i) is OK for static lists
-                                <li key={i}>
-                                    <span className="checkmark">✓</span>
-                                    {feature}
-                                </li>
-                            ))}
-                        </ul>
+                    <div className="card-top">
+                        {/* Curly braces { } let you insert JavaScript expressions into JSX */}
+                        <h3 className="card-title">{title}</h3>
+                        <p className="card-price">
+                            <span className="card-price-amount">{price}</span>
+                            {/* && only shows the period if the plan has one (e.g. Hobby doesn't) */}
+                            {pricePeriod && <span className="card-price-period">{pricePeriod}</span>}
+                        </p>
+                        <div className="card-content">
+                            <p className="includes-text">{includesText}</p>
+                            <ul className="features-list">
+                                {/* .map() loops through the features array and creates a <li> for each item */}
+                                {features.map((feature, i) => (
+                                    // "key" helps React track which items changed - using index (i) is OK for static lists
+                                    <li key={i}>
+                                        <span className="checkmark">✓</span>
+                                        {feature}
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
                     </div>
                     {/* Using our Button component instead of a raw <button> element */}
                     <Button label={buttonText} variant={buttonVariant} />
@@ -56,6 +62,7 @@
             const hobbyPlan = {
                 title: 'Hobby',
                 price: 'Free',
+                pricePeriod: null,
                 includesText: 'Includes:',
                 features: ['No credit card required', 
                 'Limited Agent requests', 
@@ -66,7 +73,8 @@
             };
             const proPlan = {
                 title: 'Pro',
-                price: '$20/mo.',
+                price: '$20',
+                pricePeriod: '/mo.',
                 includesText: 'Everything in Hobby, plus:',
                 features: [
                     'Extended limits on Agent',
@@ -79,7 +87,8 @@
             };
             const premiumPlan = {
                 title: 'Premium',
-                price: '$30/mo.',
+                price: '$30',
+                pricePeriod: '/mo.',
                 includesText: 'Everything in Pro, plus:',
                 features: [
                     'Unlimited Agent requests',
